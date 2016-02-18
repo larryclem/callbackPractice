@@ -3,6 +3,8 @@ Below is a sample problem
 
   //code here for sayHi
 
+
+
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay);
    });
@@ -26,6 +28,9 @@ and what you should write is the sayHi function that makes the code above work,
 
   //Code Here for first
   
+  var first = function(arr, cb){
+    cb(arr[0]);
+  }
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -41,12 +46,13 @@ first(names, function(firstName){
 
   //Code Here for last
 
+  var last = function(arr,cb){
+    cb(arr[arr.length-1]);
+  }
+
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
 });
-
-
-
 
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
@@ -57,6 +63,10 @@ last(names, function(lastName){
 
 
   //Code Here for multiply
+
+  var multiply = function(a, b, cb){
+    cb(a * b)
+  }
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -74,6 +84,16 @@ multiply(4, 3, function(answer){
 
   //Code Here for contains
 
+  var contains = function (arr, nameToCheck, cb){
+    var status = false;
+    for(i = 0; i <arr.length; i++){
+      if(arr[i] === nameToCheck){
+        status = true;
+      }
+    }
+    cb(status);
+  }
+
 contains(names, 'Colt', function(result){
   if(result === true){
     console.log('Colt is in the array');
@@ -89,13 +109,23 @@ contains(names, 'Colt', function(result){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
+var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 
     //Code Here for uniq
+
+  var uniq = function (arr, cb){
+  for (var i=0; i<arr.length; i++){
+    if (i !== arr.lastIndexOf(arr[i])){
+      arr.splice(arr.lastIndexOf(arr[i]), 1);
+    }
+  }
+  cb(arr);
+}
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
 });
+
 
 
 
@@ -108,11 +138,16 @@ uniq(names, function(uniqArr){
 
     //Code Here for each
 
+    var each = function (arr, cb){
+      for (var i=0; i<arr.length; i++){
+        var thing = arr[i];
+        cb (thing, i)
+      }
+    }
+
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
 });
-
-
 
 
 
